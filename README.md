@@ -24,5 +24,7 @@ python alien_invasion.py
 ```
 
 #### Game demo
-<img src="https://github.com/amirhnajafiz/Pylien-Invasion/blob/Official21A-patch-1/images/Screenshot_1.png" width=400 />
-<img src="https://github.com/amirhnajafiz/Pylien-Invasion/blob/Official21A-patch-1/images/Screenshot_2.png" width=400 />
+<p align="center">
+  <img src="https://github.com/amirhnajafiz/Pylien-Invasion/blob/Official21A-patch-1/images/Screenshot_1.png" width=500 />
+  <img src="https://github.com/amirhnajafiz/Pylien-Invasion/blob/Official21A-patch-1/images/Screenshot_2.png" width=500 />
+</p>
