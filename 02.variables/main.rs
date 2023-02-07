@@ -1,4 +1,4 @@
-main() {
+fn main() {
     // create a normal variable
     let salary = 100.00;
 
