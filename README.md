@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://static.wikia.nocookie.net/disney_mirrorverse/images/6/64/Hades.png/revision/latest?cb=20220708113837" width=300" />
+</p>
+
 # Hades
 
 This project is a __Kubernetes Operator__ designed to automate the creation of jobs for a cronjob until a successful one is achieved.
