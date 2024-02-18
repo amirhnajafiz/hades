@@ -1,0 +1,6 @@
+apiVersion: hades.github.com/v1beta1
+kind: Sole
+metadata:
+  name: sole-sample
+spec:
+  # TODO(user): Add fields here

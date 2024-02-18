@@ -1,0 +1,20 @@
+# permissions for end users to view soles.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: sole-viewer-role
+rules:
+- apiGroups:
+  - hades.github.com
+  resources:
+  - soles
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - hades.github.com
+  resources:
+  - soles/status
+  verbs:
+  - get

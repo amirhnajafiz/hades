@@ -1,0 +1,4 @@
+## Append samples you want in your CSV to this file as resources ##
+resources:
+- hades_v1beta1_sole.yaml
+#+kubebuilder:scaffold:manifestskustomizesamples
