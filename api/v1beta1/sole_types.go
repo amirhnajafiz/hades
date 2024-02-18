@@ -17,6 +17,9 @@ limitations under the License.
 package v1beta1
 
 import (
+	"time"
+
+	v1 "k8s.io/api/batch/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -25,11 +28,16 @@ import (
 
 // SoleSpec defines the desired state of Sole
 type SoleSpec struct {
-	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
-
-	// Foo is an example field of Sole. Edit sole_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	// Job is the job spec of a cronjob manifest
+	Job v1.JobSpec
+	// Cronjob name
+	Cronjob string
+	// Number of retry for this job
+	Retry int
+	// Retry bound
+	Bound int
+	// Last try timestamp
+	LastTry time.Time
 }
 
 // SoleStatus defines the observed state of Sole
