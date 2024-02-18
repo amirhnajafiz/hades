@@ -1,8 +1,6 @@
 package v1beta1
 
 import (
-	"time"
-
 	v1 "k8s.io/api/batch/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
@@ -14,15 +12,15 @@ type SoleSpec struct {
 	// Cronjob name (the body name)
 	Cronjob string `json:"cronjob"`
 	// Retry bound (an upper bound for the number of retry)
-	Bound int `json:"bound"`
+	Bound *int `json:"bound"`
 }
 
 // SoleStatus defines the observed state of Sole
 type SoleStatus struct {
 	// Number of retry for this job
-	Retry int `json:"retry"`
+	Retry *int `json:"retry"`
 	// Last try timestamp
-	LastTry time.Time `json:"last_try"`
+	LastTry string `json:"last_try,omitempty"`
 }
 
 //+kubebuilder:object:root=true
