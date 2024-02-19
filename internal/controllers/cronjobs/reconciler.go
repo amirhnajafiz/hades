@@ -47,5 +47,6 @@ func (r *CronjobReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ct
 func (r *CronjobReconciler) SetupWithManager(mgr ctrl.Manager) error {
 	return ctrl.NewControllerManagedBy(mgr).
 		For(&v1.CronJob{}).
+		WithEventFilter(r.CronJobsFilter()).
 		Complete(r)
 }
