@@ -2,7 +2,6 @@ package cronjobs
 
 import (
 	"context"
-	"time"
 
 	v1 "k8s.io/api/batch/v1"
 	"k8s.io/apimachinery/pkg/runtime"
@@ -16,16 +15,14 @@ type CronjobReconciler struct {
 	client.Client
 	scheme   *runtime.Scheme
 	cronJobs []string
-	interval time.Duration
 }
 
 // NewReconciler creates a cronjob reconciler
-func NewReconciler(client client.Client, scheme *runtime.Scheme, cronJobs []string, interval int) *CronjobReconciler {
+func NewReconciler(client client.Client, scheme *runtime.Scheme, cronJobs []string) *CronjobReconciler {
 	return &CronjobReconciler{
 		Client:   client,
 		scheme:   scheme,
 		cronJobs: cronJobs,
-		interval: time.Duration(interval) * time.Minute,
 	}
 }
 
@@ -36,7 +33,7 @@ func NewReconciler(client client.Client, scheme *runtime.Scheme, cronJobs []stri
 //+kubebuilder:rbac:groups=hades.github.com,resources=cronjobs/finalizers,verbs=update
 
 // Reconcile is part of the main kubernetes reconciliation loop which aims to
-// move the current state of the cluster closer to the desired state.
+// move the current state of the cluster closer to the desired state
 func (r *CronjobReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
 	_ = log.FromContext(ctx)
 
@@ -47,7 +44,7 @@ func (r *CronjobReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ct
 	return ctrl.Result{}, nil
 }
 
-// SetupWithManager sets up the controller with the Manager.
+// SetupWithManager sets up the controller with the Manager
 func (r *CronjobReconciler) SetupWithManager(mgr ctrl.Manager) error {
 	return ctrl.NewControllerManagedBy(mgr).
 		For(&v1.CronJob{}).
