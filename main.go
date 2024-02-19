@@ -1,7 +1,6 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"os"
 
@@ -11,12 +10,12 @@ import (
 	_ "k8s.io/client-go/plugin/pkg/client/auth"
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/healthz"
-	"sigs.k8s.io/controller-runtime/pkg/log/zap"
+	//+kubebuilder:scaffold:imports
 
 	hadesv1beta1 "github.com/amirhnajafiz/hades/api/v1beta1"
 	"github.com/amirhnajafiz/hades/internal/config"
 	"github.com/amirhnajafiz/hades/internal/controllers/soles"
-	//+kubebuilder:scaffold:imports
+	"github.com/amirhnajafiz/hades/internal/logger"
 )
 
 var (
@@ -26,7 +25,6 @@ var (
 
 func init() {
 	utilruntime.Must(clientgoscheme.AddToScheme(scheme))
-
 	utilruntime.Must(hadesv1beta1.AddToScheme(scheme))
 	//+kubebuilder:scaffold:scheme
 }
@@ -35,12 +33,8 @@ func main() {
 	// load configs
 	cfg := config.Config{}
 
-	opts := zap.Options{
-		Development: true,
-	}
-	opts.BindFlags(flag.CommandLine)
-
-	ctrl.SetLogger(zap.New(zap.UseFlagOptions(&opts)))
+	// create a new logger
+	ctrl.SetLogger(logger.New())
 
 	// create a new manager
 	mgr, err := ctrl.NewManager(ctrl.GetConfigOrDie(), ctrl.Options{
