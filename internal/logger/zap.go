@@ -6,6 +6,8 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 )
 
+// New zap logger with given level as
+// zapcore level
 func New(level string) logr.Logger {
 	opts := zap.Options{
 		Development: true,
@@ -15,6 +17,7 @@ func New(level string) logr.Logger {
 	return zap.New(zap.UseFlagOptions(&opts))
 }
 
+// label to level converter
 func labelToLevel(level string) zapcore.Level {
 	switch level {
 	case "debug":
