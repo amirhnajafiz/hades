@@ -31,7 +31,7 @@ func init() {
 
 func main() {
 	// load configs
-	cfg := config.Config{}
+	cfg := config.New("config.yml")
 
 	// create a new logger
 	ctrl.SetLogger(logger.New(cfg.Logger.Level))
@@ -47,7 +47,6 @@ func main() {
 	})
 	if err != nil {
 		setupLog.Error(err, "unable to start manager")
-
 		os.Exit(1)
 	}
 
@@ -63,13 +62,11 @@ func main() {
 
 	if err := mgr.AddHealthzCheck("healthz", healthz.Ping); err != nil {
 		setupLog.Error(err, "unable to set up health check")
-
 		os.Exit(1)
 	}
 
 	if err := mgr.AddReadyzCheck("readyz", healthz.Ping); err != nil {
 		setupLog.Error(err, "unable to set up ready check")
-
 		os.Exit(1)
 	}
 
@@ -77,7 +74,6 @@ func main() {
 
 	if err := mgr.Start(ctrl.SetupSignalHandler()); err != nil {
 		setupLog.Error(err, "problem running manager")
-
 		os.Exit(1)
 	}
 }
