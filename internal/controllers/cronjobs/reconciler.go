@@ -14,9 +14,19 @@ import (
 // CronjobReconciler reconciles a Cronjob object
 type CronjobReconciler struct {
 	client.Client
-	Scheme   *runtime.Scheme
-	CronJobs []string
-	Interval time.Duration
+	scheme   *runtime.Scheme
+	cronJobs []string
+	interval time.Duration
+}
+
+// NewReconciler creates a cronjob reconciler
+func NewReconciler(client client.Client, scheme *runtime.Scheme, cronJobs []string, interval int) *CronjobReconciler {
+	return &CronjobReconciler{
+		Client:   client,
+		scheme:   scheme,
+		cronJobs: cronJobs,
+		interval: time.Duration(interval) * time.Minute,
+	}
 }
 
 // TODO: add a filter for getting a cronjob
