@@ -13,6 +13,8 @@ type SoleSpec struct {
 	Cronjob string `json:"cronjob"`
 	// Retry bound (an upper bound for the number of retry)
 	Bound *int `json:"bound"`
+	// Interval is the time in minutes for a new retry
+	Interval *int `json:"interval,omitempty"`
 }
 
 // SoleStatus defines the observed state of Sole

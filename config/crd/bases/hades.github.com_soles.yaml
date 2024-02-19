@@ -41,6 +41,9 @@ spec:
               cronjob:
                 description: Cronjob name (the body name)
                 type: string
+              interval:
+                description: Interval is the time in minutes for a new retry
+                type: integer
               job:
                 description: Job is the job spec of a cronjob manifest
                 properties:
