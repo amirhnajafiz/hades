@@ -28,9 +28,8 @@ func NewReconciler(client client.Client, scheme *runtime.Scheme, cronJobs []stri
 
 // TODO: add a filter for getting a cronjob
 
-//+kubebuilder:rbac:groups=hades.github.com,resources=cronjobs,verbs=get;list;watch;create;update;patch;delete
-//+kubebuilder:rbac:groups=hades.github.com,resources=cronjobs/status,verbs=get;update;patch
-//+kubebuilder:rbac:groups=hades.github.com,resources=cronjobs/finalizers,verbs=update
+//+kubebuilder:rbac:groups=hades.github.com,resources=cronjobs,verbs=get;list;watch
+//+kubebuilder:rbac:groups=hades.github.com,resources=cronjobs/status,verbs=get
 
 // Reconcile is part of the main kubernetes reconciliation loop which aims to
 // move the current state of the cluster closer to the desired state

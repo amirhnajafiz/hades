@@ -14,6 +14,7 @@ import (
 
 	hadesv1beta1 "github.com/amirhnajafiz/hades/api/v1beta1"
 	"github.com/amirhnajafiz/hades/internal/config"
+	"github.com/amirhnajafiz/hades/internal/controllers/cronjobs"
 	"github.com/amirhnajafiz/hades/internal/controllers/soles"
 	"github.com/amirhnajafiz/hades/internal/logger"
 )
@@ -50,11 +51,13 @@ func main() {
 		os.Exit(1)
 	}
 
-	if err = (&soles.SoleReconciler{
-		Client: mgr.GetClient(),
-		Scheme: mgr.GetScheme(),
-	}).SetupWithManager(mgr); err != nil {
+	// create soles and cronjobs reconcilers
+	if err := soles.NewReconciler(mgr.GetClient(), mgr.GetScheme(), cfg.Interval).SetupWithManager(mgr); err != nil {
 		setupLog.Error(err, "unable to create controller", "controller", "Sole")
+		os.Exit(1)
+	}
+	if err := cronjobs.NewReconciler(mgr.GetClient(), mgr.GetScheme(), cfg.CronJobs).SetupWithManager(mgr); err != nil {
+		setupLog.Error(err, "unable to create controller", "controller", "Cronjobs")
 		os.Exit(1)
 	}
 

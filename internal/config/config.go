@@ -8,7 +8,6 @@ import (
 	"github.com/knadh/koanf/providers/file"
 	"github.com/knadh/koanf/providers/structs"
 
-	"github.com/amirhnajafiz/hades/internal/config/cronjobs"
 	"github.com/amirhnajafiz/hades/internal/config/logger"
 	"github.com/amirhnajafiz/hades/internal/config/operator"
 )
@@ -16,11 +15,11 @@ import (
 // Config stores the initial values of
 // our operator
 type Config struct {
-	Operator  operator.Config   `koanf:"operator"`
-	Logger    logger.Config     `koanf:"logger"`
-	CronJobs  []cronjobs.Config `koanf:"cronjobs"`
-	Interval  int               `koanf:"interval"`
-	Threshold int               `koanf:"threshold"`
+	Operator  operator.Config `koanf:"operator"`
+	Logger    logger.Config   `koanf:"logger"`
+	CronJobs  []string        `koanf:"cronjobs"`
+	Interval  int             `koanf:"interval"`
+	Threshold int             `koanf:"threshold"`
 }
 
 // New loads config from a yaml file
