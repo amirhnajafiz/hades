@@ -34,7 +34,7 @@ func main() {
 	cfg := config.Config{}
 
 	// create a new logger
-	ctrl.SetLogger(logger.New())
+	ctrl.SetLogger(logger.New(cfg.Logger.Level))
 
 	// create a new manager
 	mgr, err := ctrl.NewManager(ctrl.GetConfigOrDie(), ctrl.Options{
