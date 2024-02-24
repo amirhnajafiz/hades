@@ -21,17 +21,8 @@ func (r *CronjobReconciler) CronJobNameCheck(name string) bool {
 // based on their names
 func (r *CronjobReconciler) CronJobsFilter() predicate.Predicate {
 	return predicate.Funcs{
-		CreateFunc: func(event event.CreateEvent) bool {
-			return r.CronJobNameCheck(event.Object.GetName())
-		},
 		UpdateFunc: func(event event.UpdateEvent) bool {
 			return r.CronJobNameCheck(event.ObjectNew.GetName())
-		},
-		DeleteFunc: func(event event.DeleteEvent) bool {
-			return r.CronJobNameCheck(event.Object.GetName())
-		},
-		GenericFunc: func(event event.GenericEvent) bool {
-			return r.CronJobNameCheck(event.Object.GetName())
 		},
 	}
 }
