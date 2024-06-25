@@ -3,19 +3,9 @@ package soles
 import (
 	"context"
 
-	"k8s.io/apimachinery/pkg/runtime"
 	ctrl "sigs.k8s.io/controller-runtime"
-	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/log"
-
-	hadesamirhnajafizv1alpha1 "github.com/amirhnajafiz/hades/api/v1alpha1"
 )
-
-// SoleReconciler reconciles a Sole object
-type SoleReconciler struct {
-	client.Client
-	Scheme *runtime.Scheme
-}
 
 //+kubebuilder:rbac:groups=hades.amirhnajafiz.github.com,resources=soles,verbs=get;list;watch;create;update;patch;delete
 //+kubebuilder:rbac:groups=hades.amirhnajafiz.github.com,resources=soles/status,verbs=get;update;patch
@@ -23,24 +13,10 @@ type SoleReconciler struct {
 
 // Reconcile is part of the main kubernetes reconciliation loop which aims to
 // move the current state of the cluster closer to the desired state.
-// TODO(user): Modify the Reconcile function to compare the state specified by
-// the Sole object against the actual cluster state, and then
-// perform operations to make the cluster state reflect the state specified by
-// the user.
-//
-// For more details, check Reconcile and its Result here:
-// - https://pkg.go.dev/sigs.k8s.io/controller-runtime@v0.12.2/pkg/reconcile
-func (r *SoleReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
+func (r *Reconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
 	_ = log.FromContext(ctx)
 
 	// TODO(user): your logic here
 
 	return ctrl.Result{}, nil
-}
-
-// SetupWithManager sets up the controller with the Manager.
-func (r *SoleReconciler) SetupWithManager(mgr ctrl.Manager) error {
-	return ctrl.NewControllerManagedBy(mgr).
-		For(&hadesamirhnajafizv1alpha1.Sole{}).
-		Complete(r)
 }
