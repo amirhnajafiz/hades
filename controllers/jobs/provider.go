@@ -35,16 +35,19 @@ func (r *Reconciler) Provide(ctx context.Context) (ctrl.Result, error) {
 	}
 
 	sole := &hadesamirhnajafizv1alpha1.Sole{}
-	sole.Name = fmt.Sprintf("%s-sole", r.job.Name)
+	sole.Name = r.name + "-sole"
 	sole.Namespace = r.namespace
 	sole.Spec = hadesamirhnajafizv1alpha1.SoleSpec{
 		Job: r.job,
+	}
+	sole.Status = hadesamirhnajafizv1alpha1.SoleStatus{
+		Heal: false,
 	}
 
 	// otherwise create a new sole
 	if err := r.Create(ctx, sole); err != nil {
 		if !apierrors.IsAlreadyExists(err) {
-			r.logger.Error(err, fmt.Sprintf("failed to create the Sole instance for Job %s in namespace %s", r.job.Name, r.namespace))
+			r.logger.Error(err, fmt.Sprintf("failed to create the Sole instance for Job %s in namespace %s", r.name, r.namespace))
 			return subreconciler.Evaluate(subreconciler.Requeue())
 		}
 	}

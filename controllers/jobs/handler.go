@@ -15,6 +15,7 @@ type Reconciler struct {
 	logger    logr.Logger
 	job       *v1.Job
 	namespace string
+	name      string
 }
 
 // NewReconciler creates a jobs reconciler

@@ -37,4 +37,5 @@ func (r *Reconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Resu
 func (r *Reconciler) initVars(req ctrl.Request) {
 	r.job = &v1.Job{}
 	r.namespace = req.Namespace
+	r.name = req.Name
 }
