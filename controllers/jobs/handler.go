@@ -28,7 +28,7 @@ func NewReconciler(client client.Client, scheme *runtime.Scheme) *Reconciler {
 // SetupWithManager sets up the controller with the Manager
 func (r *Reconciler) SetupWithManager(mgr ctrl.Manager) error {
 	return ctrl.NewControllerManagedBy(mgr).
-		For(&v1.CronJob{}).
+		For(&v1.Job{}).
 		WithEventFilter(r.JobsFilter()).
 		Complete(r)
 }
