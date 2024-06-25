@@ -16,6 +16,7 @@ type Reconciler struct {
 	logger    logr.Logger
 	sole      *hadesamirhnajafizv1alpha1.Sole
 	namespace string
+	name      string
 }
 
 // NewReconciler creates a soles reconciler.
