@@ -11,9 +11,9 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/log"
 )
 
-//+kubebuilder:rbac:groups=hades.github.com,resources=jobs,verbs=get;list;watch;create;patch;delete
-//+kubebuilder:rbac:groups=hades.github.com,resources=soles,verbs=create
+//+kubebuilder:rbac:groups=hades.github.com,resources=jobs,verbs=get;list;watch;delete
 //+kubebuilder:rbac:groups=hades.github.com,resources=jobs/status,verbs=get
+//+kubebuilder:rbac:groups=hades.github.com,resources=soles,verbs=create
 
 // Reconcile is part of the main kubernetes reconciliation loop which aims to
 // move the current state of the cluster closer to the desired state
