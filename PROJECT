@@ -6,4 +6,14 @@ plugins:
   scorecard.sdk.operatorframework.io/v2: {}
 projectName: hades
 repo: github.com/amirhnajafiz/hades
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: github.com
+  group: hades.amirhnajafiz
+  kind: Sole
+  path: github.com/amirhnajafiz/hades/api/v1alpha1
+  version: v1alpha1
 version: "3"
