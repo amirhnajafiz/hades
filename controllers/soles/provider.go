@@ -19,6 +19,7 @@ func (r *Reconciler) Provide(ctx context.Context) (ctrl.Result, error) {
 		}
 	}
 
+	// update role status to heal
 	r.sole.Status.Heal = true
 	if err := r.Update(ctx, r.sole); err != nil {
 		r.logger.Error(err, fmt.Sprintf("failed to update Sole %s in namespace %s", r.name, r.namespace))

@@ -36,6 +36,7 @@ func (r *Reconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Resu
 		}
 	}
 
+	// provide a sole
 	return r.Provide(ctx)
 }
 
