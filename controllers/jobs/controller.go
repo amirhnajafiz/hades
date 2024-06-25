@@ -30,7 +30,8 @@ func (r *Reconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Resu
 		return subreconciler.Evaluate(subreconciler.Requeue())
 	}
 
-	return ctrl.Result{}, nil
+	// check for sole creation
+	return r.Provide(ctx)
 }
 
 func (r *Reconciler) initVars(req ctrl.Request) {
