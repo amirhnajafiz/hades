@@ -3,6 +3,7 @@ package soles
 import (
 	hadesamirhnajafizv1alpha1 "github.com/amirhnajafiz/hades/api/v1alpha1"
 
+	"github.com/go-logr/logr"
 	"k8s.io/apimachinery/pkg/runtime"
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
@@ -11,7 +12,18 @@ import (
 // Reconciler reconciles a Sole object
 type Reconciler struct {
 	client.Client
-	Scheme *runtime.Scheme
+	scheme    *runtime.Scheme
+	logger    logr.Logger
+	sole      *hadesamirhnajafizv1alpha1.Sole
+	namespace string
+}
+
+// NewReconciler creates a soles reconciler.
+func NewReconciler(client client.Client, scheme *runtime.Scheme) *Reconciler {
+	return &Reconciler{
+		Client: client,
+		scheme: scheme,
+	}
 }
 
 // SetupWithManager sets up the controller with the Manager.
