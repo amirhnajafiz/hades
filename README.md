@@ -15,10 +15,6 @@ Upon detecting a failed cronjob, it records this occurrence in a MySQL database.
 Subsequently, an agent routinely retrieves these entries from the database and generates Jobs until a successful job is achieved.
 The timing interval and list of cronjobs can be configured within the operator's configmap.
 
-<p align="center">
-  <img src=".github/assets/hades.svg" width="600" />
-</p>
-
 ## Why Hades?
 
 __Hades__ is a prominent figure in Greek mythology, known as the ruler of the underworld and the god of the dead.
