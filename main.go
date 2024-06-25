@@ -14,6 +14,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
 	hadesamirhnajafizv1alpha1 "github.com/amirhnajafiz/hades/api/v1alpha1"
+	"github.com/amirhnajafiz/hades/controllers/jobs"
 	"github.com/amirhnajafiz/hades/controllers/soles"
 	//+kubebuilder:scaffold:imports
 )
@@ -65,6 +66,11 @@ func main() {
 	// create soles reconciler
 	if err := soles.NewReconciler(mgr.GetClient(), mgr.GetScheme()).SetupWithManager(mgr); err != nil {
 		setupLog.Error(err, "unable to create controller", "controller", "Sole")
+		os.Exit(1)
+	}
+	// create jobs reconciler
+	if err := jobs.NewReconciler(mgr.GetClient(), mgr.GetScheme()).SetupWithManager(mgr); err != nil {
+		setupLog.Error(err, "unable to create controller", "controller", "Jobs")
 		os.Exit(1)
 	}
 	//+kubebuilder:scaffold:builder
