@@ -11,6 +11,7 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 )
 
+// isAliveJob checks if the job is failed or not.
 func (r *Reconciler) isAliveJob() bool {
 	if r.job.Status.Active == 0 && r.job.Status.Succeeded == 0 && r.job.Status.Failed == 0 {
 		return true
@@ -31,9 +32,10 @@ func (r *Reconciler) isAliveJob() bool {
 func (r *Reconciler) Provide(ctx context.Context) (ctrl.Result, error) {
 	// check if the job is alive
 	if r.isAliveJob() {
-		return subreconciler.Evaluate(subreconciler.Requeue())
+		return subreconciler.Evaluate(subreconciler.DoNotRequeue())
 	}
 
+	// create a new sole instance
 	sole := &hadesamirhnajafizv1alpha1.Sole{}
 	sole.Name = r.name + "-sole"
 	sole.Namespace = r.namespace
@@ -44,12 +46,18 @@ func (r *Reconciler) Provide(ctx context.Context) (ctrl.Result, error) {
 		Heal: false,
 	}
 
-	// otherwise create a new sole
+	// create a new sole object
 	if err := r.Create(ctx, sole); err != nil {
 		if !apierrors.IsAlreadyExists(err) {
 			r.logger.Error(err, fmt.Sprintf("failed to create the Sole instance for Job %s in namespace %s", r.name, r.namespace))
 			return subreconciler.Evaluate(subreconciler.Requeue())
 		}
+	}
+
+	// delete the current job
+	if err := r.Delete(ctx, r.job); err != nil {
+		r.logger.Error(err, fmt.Sprintf("failed to delete job %s in namespace %s", r.name, r.namespace))
+		return subreconciler.Evaluate(subreconciler.Requeue())
 	}
 
 	return subreconciler.Evaluate(subreconciler.DoNotRequeue())

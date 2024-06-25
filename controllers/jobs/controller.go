@@ -12,6 +12,7 @@ import (
 )
 
 //+kubebuilder:rbac:groups=hades.github.com,resources=jobs,verbs=get;list;watch;create;patch;delete
+//+kubebuilder:rbac:groups=hades.github.com,resources=soles,verbs=create
 //+kubebuilder:rbac:groups=hades.github.com,resources=jobs/status,verbs=get
 
 // Reconcile is part of the main kubernetes reconciliation loop which aims to
