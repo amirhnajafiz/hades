@@ -12,8 +12,6 @@ import (
 type SoleSpec struct {
 	// Job is bounded to a sole. Therefore, until the sole exists, it creates the job that is bounded to.
 	Job *v1.Job `json:"job,omitempty"`
-	// Interval is the time in seconds for a new retry. It will be used as reconcile interval.
-	Interval *int `json:"interval,omitempty"`
 }
 
 // SoleStatus defines the observed state of Sole
