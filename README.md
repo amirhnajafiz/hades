@@ -4,16 +4,15 @@
 
 # Hades
 
-This project is a __Kubernetes Operator__ designed to automate the creation of jobs for a cronjob until a successful one is achieved.
-In the event of a cronjob failure, this operator initiates the generation of new jobs at regular intervals until a successful job is obtained.
-This operator is activated following the identification of a cronjob failure by Kubernetes.
+This project is a __Kubernetes Operator__ designed to automate the creation of jobs until a successful one is achieved.
+In the event of a job failure, this operator initiates the generation of new jobs at regular intervals until a successful job is obtained.
+This operator is activated following the identification of a job failure by Kubernetes.
 
 ## How it works?
 
-This system includes a monitoring mechanism that oversees cronjobs within a specific namespace.
-Upon detecting a failed cronjob, it records this occurrence in a MySQL database.
-Subsequently, an agent routinely retrieves these entries from the database and generates Jobs until a successful job is achieved.
-The timing interval and list of cronjobs can be configured within the operator's configmap.
+This system includes a monitoring mechanism that oversees jobs within a specific namespace.
+Upon detecting a failed job, it creates a new `Sole` object.
+Subsequently, an agent routinely retrieves these entries from the operator-loop and generates Jobs until a successful job is achieved.
 
 ## Why Hades?
 
@@ -29,8 +28,8 @@ It embodies a sense of authority and regulation, akin to the role played by Hade
 
 ## Getting Started
 
-You’ll need a Kubernetes cluster to run against. You can use [KIND](https://sigs.k8s.io/kind) to get a local cluster for testing, or run against a remote cluster.
-**Note:** Your controller will automatically use the current context in your kubeconfig file (i.e. whatever cluster `kubectl cluster-info` shows).
+You'll need a Kubernetes cluster to run against. You can use [KIND](https://sigs.k8s.io/kind) to get a local cluster for testing, or run against a remote cluster.
+__Note:__ Your controller will automatically use the current context in your kubeconfig file (i.e. whatever cluster `kubectl cluster-info` shows).
 
 ### Running on the cluster
 
@@ -89,7 +88,7 @@ make install
 make run
 ```
 
-**NOTE:** You can also run this in one step by running: `make install run`
+__NOTE:__ You can also run this in one step by running: `make install run`
 
 ### Modifying the API definitions
 
@@ -99,25 +98,9 @@ If you are editing the API definitions, generate the manifests such as CRs or CR
 make manifests
 ```
 
-**NOTE:** Run `make --help` for more information on all potential `make` targets
+__NOTE:__ Run `make --help` for more information on all potential `make` targets
 
 More information can be found via the [Kubebuilder Documentation](https://book.kubebuilder.io/introduction.html)
-
-## License
-
-Copyright 2024.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
 
 ## Contribute
 
