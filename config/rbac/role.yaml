@@ -31,3 +31,27 @@ rules:
   - get
   - patch
   - update
+- apiGroups:
+  - hades.github.com
+  resources:
+  - jobs
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - hades.github.com
+  resources:
+  - jobs/status
+  verbs:
+  - get
+- apiGroups:
+  - hades.github.com
+  resources:
+  - soles
+  verbs:
+  - create

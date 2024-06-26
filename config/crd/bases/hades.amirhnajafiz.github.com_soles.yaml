@@ -18,7 +18,7 @@ spec:
   - name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Sole is the Schema for the soles API
+        description: Sole is the Schema for the soles API.
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -33,7 +33,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: SoleSpec defines the desired state of Sole
+            description: SoleSpec defines the desired state of Sole.
             properties:
               job:
                 description: Job is bounded to a sole. Therefore, until the sole exists,
@@ -8254,7 +8254,7 @@ spec:
                 type: object
             type: object
           status:
-            description: SoleStatus defines the observed state of Sole
+            description: SoleStatus defines the observed state of Sole.
             properties:
               heal:
                 description: Heal is a flag that determines if a job is being created
